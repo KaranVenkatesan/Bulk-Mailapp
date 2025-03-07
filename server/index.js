@@ -1,16 +1,14 @@
 const express = require("express")
+const cors = require("cors")
 const mongoose = require("mongoose")
 const app = express()
-require("dotenv").config();
-
-const cors = require("cors");
 
 app.use(cors({
-    origin: "https://bulk-mailapp-client.vercel.app",
-  methods: ["GET", "POST"],
-  allowedHeaders: ["Content-Type"]
+    origin: "https://bulk-mailapp-client.vercel.app/",  
+    methods: ["GET", "POST", "PUT", "DELETE"],   
+    credentials: true                            
 }));
-
+app.use(express.json())
 
 
 // Install Nodemailer
