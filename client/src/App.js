@@ -35,22 +35,18 @@ function App() {
 
   function send() {
     setstatus(true)
-    axios.post("https://bulk-mailapp-server-a4ctnrb7s-karanvenkatesans-projects.vercel.app/sendemail", { msg:msg, emailList:emailList })
-      .then(function (data) {
-        if (data.data === true) {
-          alert("Email Sent Successfully 😁")
-          setstatus(false)
-        }
-        else {
-          alert("Failed 😑")
-          setstatus(false)
-        }
-      })
-      .catch(function(error) {
-        console.error("Network error:", error);
-        alert("Network Error: " + error.message);
-        setstatus(false);
-      });
+    axios.post("https://bulk-mailapp-server-a4ctnrb7s-karanvenkatesans-projects.vercel.app/sendemail", { msg:msg,emailList:emailList })
+    .then(function (data) {
+      if (data.data === true) {
+        res.header("Access-Control-Allow-Origin","https://bulk-mailapp-server.vercel.app")
+        alert("Email Sent Successfully 😁")
+        setstatus(false)
+      }
+      else {
+        alert("Failed 😑")
+      }
+    })
+  
   }
   return (
     <div>

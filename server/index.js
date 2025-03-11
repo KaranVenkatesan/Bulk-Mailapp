@@ -1,23 +1,18 @@
 const express = require("express")
 const cors = require("cors")
 const mongoose = require("mongoose")
-// Install Nodemailer
-const nodemailer = require("nodemailer")
 const app = express()
 
 app.use(cors({
-    origin: [
-        "https://bulk-mailapp-client.vercel.app",
-        "https://bulk-mailapp-client-5dxz2zs8k-karanvenkatesans-projects.vercel.app"
-    ],
-    methods: ["GET", "POST", "OPTIONS"],
-    credentials: true,
-    allowedHeaders: ["Content-Type", "Authorization"]
+    origin: "https://bulk-mailapp-client.vercel.app",  
+    methods: ["GET", "POST"],   
+    credentials: true                            
 }));
 app.use(express.json())
 
 
-
+// Install Nodemailer
+const nodemailer = require("nodemailer")
 
 // connecting with mongoose
 mongoose.connect("mongodb+srv://vkaran0915:2000@cluster0.zb8jg.mongodb.net/apppass?retryWrites=true&w=majority&appName=Cluster0").then(function () {
