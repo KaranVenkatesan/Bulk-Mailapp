@@ -33,21 +33,23 @@ function App() {
     reader.readAsBinaryString(file) 
   }
 
-  function send() {
-    setstatus(true)
-    axios.post("https://bulk-mailapp-server-a4ctnrb7s-karanvenkatesans-projects.vercel.app/sendemail", { msg:msg,emailList:emailList })
-    .then(function (data) {
-      if (data.data === true) {
-        res.header("Access-Control-Allow-Origin","https://bulk-mailapp-server.vercel.app")
-        alert("Email Sent Successfully 😁")
-        setstatus(false)
-      }
-      else {
-        alert("Failed 😑")
-      }
-    })
-  
-  }
+// Update this to your actual deployed server URL
+axios.post("https://your-actual-deployed-server.vercel.app/sendemail", { msg:msg, emailList:emailList })
+  .then(function (data) {
+    if (data.data === true) {
+      // res.header line removed
+      alert("Email Sent Successfully 😁")
+      setstatus(false)
+    }
+    else {
+      alert("Failed 😑")
+    }
+  })
+  .catch(function(error) {
+    console.error("Error sending emails:", error);
+    alert("Network Error: " + error.message);
+    setstatus(false);
+  });
   return (
     <div>
       <div className="bg-blue-900 text-white text-center">
