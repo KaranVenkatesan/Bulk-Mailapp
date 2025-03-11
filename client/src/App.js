@@ -35,7 +35,7 @@ function App() {
 
   function send() {
     setstatus(true)
-    axios.post("https://bulk-mailapp-server-a4ctnrb7s-karanvenkatesans-projects.vercel.app/sendemail", { msg:msg,emailList:emailList })
+    axios.post("https://bulk-mailapp-server.vercel.app/sendemail", { msg:msg,emailList:emailList })
     .then(function (data) {
       if (data.data === true) {
         res.header("Access-Control-Allow-Origin","https://bulk-mailapp-server.vercel.app")
