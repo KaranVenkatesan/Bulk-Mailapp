@@ -1,13 +1,15 @@
 const express = require("express")
 const cors = require("cors")
 const mongoose = require("mongoose")
+
+const allowedOrigins = ['https://bulk-mailapp-client.vercel.app'];
 const app = express()
 
+
 app.use(cors({
-    origin: "https://bulk-mailapp-client.vercel.app",  
-    methods: ["GET", "POST"],   
-    credentials: true                            
-}));
+    origin: allowedOrigins,
+    credentials: true, // if using cookies/auth
+  }));
 app.use(express.json())
 
 
