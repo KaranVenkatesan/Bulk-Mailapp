@@ -3,11 +3,23 @@ const cors = require("cors")
 const mongoose = require("mongoose")
 const app = express()
 
-app.use(cors({
-    origin: "https://bulk-mailapp-client.vercel.app",  // Make sure this matches your client URL
-    methods: ["GET", "POST"],   
-    credentials: true                            
-}));
+const allowedOrigins = [
+    'https://bulk-mailapp-client.vercel.app',
+    'https://bulk-mailapp-server-a4ctnrb7s-karanvenkatesans-projects.vercel.app',
+    // add other origins if needed
+  ];
+  
+  app.use(cors({
+      origin: function(origin, callback) {
+        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+          callback(null, true);
+        } else {
+          callback(new Error('Not allowed by CORS'));
+        }
+      },
+      methods: ["GET", "POST"],
+      credentials: true
+  }));
 app.use(express.json())
 
 
